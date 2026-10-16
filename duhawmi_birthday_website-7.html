@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DUHAWMI.exe — Birthday Mode</title>
+<style>
+:root{--bg:#100d17;--panel:#201729;--pink:#ff6b9a;--gold:#f7cb75;--cream:#fff3e4;--muted:#d6bfd2}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 15% 10%,#49203d 0,transparent 34%),radial-gradient(circle at 90% 80%,#24304b 0,transparent 30%),var(--bg);color:var(--cream);font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;overflow-x:hidden}
+main{width:min(900px,92%);margin:0 auto;padding:30px 0 60px}
+.hero{text-align:center;padding:36px 18px 28px}
+.pill{display:inline-block;border:1px solid #f7cb7566;color:var(--gold);border-radius:99px;padding:7px 13px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:clamp(2.7rem,9vw,6rem);line-height:.95;margin:22px 0 14px;letter-spacing:-.06em}
+h1 span{color:var(--pink);text-shadow:0 0 28px #ff6b9a55}
+.subtitle{font-size:clamp(1rem,3vw,1.25rem);color:var(--muted);max-width:620px;margin:0 auto}
+.card{background:#201729df;border:1px solid #f7cb7533;border-radius:24px;padding:24px;margin:18px 0;box-shadow:0 18px 55px #0003}
+h2{margin:0 0 12px;color:var(--gold);font-size:1.4rem}
+p{line-height:1.7}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+button{border:0;border-radius:14px;padding:13px 17px;font-weight:800;font-size:1rem;cursor:pointer;background:var(--pink);color:#24111c;box-shadow:0 5px 0 #a33d62;transition:transform .15s}
+button:hover{transform:translateY(-2px)}button.secondary{background:var(--gold);box-shadow:0 5px 0 #9e7938}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}
+.note{background:#fff3e4;color:#352236;padding:17px;border-radius:16px;transform:rotate(-1deg);min-height:140px}
+.note:nth-child(2){transform:rotate(1deg)}.note:nth-child(3){transform:rotate(-.5deg)}
+.note b{display:block;margin-bottom:7px;color:#9e315a}
+.hidden{display:none}.big{font-size:1.18rem}
+.stamp{font-size:3rem;line-height:1}
+footer{text-align:center;color:#bda9c0;font-size:.85rem;margin-top:25px}
+#pop{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.floaty{position:absolute;bottom:-40px;animation:rise 3.4s ease-out forwards;font-size:24px}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+@media(max-width:520px){.card{padding:18px}.hero{padding-top:20px}}
+</style>
+</head>
+<body>
+<div id="pop"></div>
+<main>
+  <header class="hero">
+    <div class="pill">⚠️ Official birthday announcement ⚠️</div>
+    <div class="stamp" aria-hidden="true">🎂🫡</div>
+    <h1>HAPPY BIRTHDAY,<br><span>DUHAWMI!</span></h1>
+    <p class="subtitle">Congratulations! You have successfully survived another 365-day season of being absolutely ridiculous.</p>
+    <div class="actions">
+      <button onclick="celebrate()">PRESS FOR CHAOS 🎉</button>
+      <button class="secondary" onclick="showSecret()">Open the suspicious button 👀</button>
+    </div>
+  </header>
+
+  <section class="card">
+    <h2>📢 Important birthday notice</h2>
+    <p class="big">Dear Duhawmi,</p>
+    <p>Today is your birthday, which means you are legally required to accept compliments, eat something delicious, and pretend you didn't see this embarrassing website being made for you.</p>
+    <p>May your Wi-Fi be strong, your snacks never run out, your photos come out good on the first try, and your problems be as confused as you are before coffee. 😭</p>
+    <p><b>Terms & conditions:</b> Cake is mandatory. Being dramatic is encouraged. Growing up is optional (within reason).</p>
+  </section>
+
+  <section class="card">
+    <h2>💌 Three extremely official notes</h2>
+    <div class="grid">
+      <div class="note"><b>NOTE #1: FACTS</b>You are one of a kind. Mainly because nobody else could copy your exact level of chaos.</div>
+      <div class="note"><b>NOTE #2: WISH</b>I hope this year brings you good people, happy memories, unexpected treats, and zero embarrassing screenshots.</div>
+      <div class="note"><b>NOTE #3: WARNING</b>If you get too famous, please remember us common people. We accept payment in cake.</div>
+    </div>
+  </section>
+
+  <section class="card hidden" id="secret">
+    <h2>🤫 Secret message unlocked</h2>
+    <p class="big">Jokes aside, Duhawmi — I'm really glad you're here. I hope you feel loved today and that the coming year gives you plenty of reasons to smile. You deserve a genuinely lovely birthday. 💗</p>
+  </section>
+
+  <section class="card" style="text-align:center">
+    <h2>🎂 Birthday mission</h2>
+    <p>Tap the button to issue Duhawmi's official birthday wishes from the Department of Cake & Nonsense.</p>
+    <button class="secondary" onclick="mission()">ACCEPT YOUR BIRTHDAY WISHES</button>
+    <p id="missionText" class="big" aria-live="polite"></p>
+  </section>
+  <footer>Made with friendship, questionable humour, and approximately one million imaginary candles. ✨</footer>
+</main>
+<script>
+function celebrate(){
+ const box=document.getElementById('pop');
+ const bits=['🎉','💗','✨','🎂','🫶','⭐','🍰'];
+ for(let i=0;i<34;i++){const el=document.createElement('span');el.className='floaty';el.textContent=bits[Math.floor(Math.random()*bits.length)];el.style.left=Math.random()*100+'%';el.style.animationDelay=Math.random()*.8+'s';el.style.fontSize=(18+Math.random()*22)+'px';box.appendChild(el);setTimeout(()=>el.remove(),4500)}
+}
+function showSecret(){document.getElementById('secret').classList.remove('hidden');document.getElementById('secret').scrollIntoView({behavior:'smooth',block:'center'});celebrate()}
+const wishes=['May your cake be huge and your responsibilities tiny. 🎂','You are now one year more legendary. Please act accordingly. 🫡','Birthday calories are imaginary. This is science. 🔬','May all your wishes come true—except the ones that would get us arrested. 😭'];
+function mission(){document.getElementById('missionText').textContent=wishes[Math.floor(Math.random()*wishes.length)];celebrate()}
+</script>
+</body>
+</html>
